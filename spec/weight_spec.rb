@@ -6,6 +6,10 @@ describe Item do
   #   Item.reset_all
   # end
 
-  # let(:item) { Item.new()}
+  let(:item) { Item.new("NAME", "50# AVG")}
+
+  it "weighs an integer or range as string" do
+    expect(item.weight).to eq(50)
+  end
 
 end

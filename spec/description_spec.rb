@@ -6,7 +6,7 @@ describe Item do
   #   Item.reset_all
   # end
 
-  let(:item) { Item.new("EA PICKLES, PEPPERED") }
+  let(:item) { Item.new("EA PICKLES, PEPPERED", "50#") }
 
   it "can initalize" do
     expect(item).to be_a(Item)

@@ -1,12 +1,14 @@
 class Item
-  attr_reader :line1, :line2, :description
+  attr_reader :line1, :line2, :description, :weight
 
-  def initialize(name)
+  def initialize(name, weight)
     @description = clean_names(name)
-    @line1 = separate_lines(@description)[0]
-    @line2 = separate_lines(@description)[1]
-    # @@itemlist << self
+    @line1  = separate_lines(@description)[0]
+    @line2  = separate_lines(@description)[1]
+    @weight = get_weight_num(weight)
+    # @mod    =
   end
+
 
 
 private
@@ -25,6 +27,10 @@ private
   def separate_lines(desc)
     desc = clean_names(desc)
     return desc.split(',').map{|x| x.strip.upcase}
+  end
+
+  def get_weight_num(weight)
+    weight.gsub(/((-\d*{2})+\D*)|[^+(0-9)\.]/,"").to_f
   end
 
 
