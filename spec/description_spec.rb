@@ -1,20 +1,20 @@
 require_relative 'spec_helper'
 
-describe Description do
+describe Item do
 
   before(:each) do
-    Description.reset_all
+    Item.reset_all
   end
 
-  let(:description) { Description.new("EA PICKLES, PEPPERED") }
+  let(:item) { Item.new("EA PICKLES, PEPPERED") }
 
-  it "can initalize a description" do
-    expect(description).to be_a(Description)
+  it "can initalize a item" do
+    expect(item).to be_a(Item)
   end
 
   it "removes EA prefix" do
-    expect(description.line1).to eq("PICKLES, PEPPERED")
-    expect(description.line2).to eq("PICKLES, PEPPERED")
+    expect(item.line1).to eq("PICKLES")
+    expect(item.line2).to eq("PEPPERED")
   end
 
 
