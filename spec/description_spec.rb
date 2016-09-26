@@ -22,5 +22,4 @@ describe Item do
     expect(item.line2).to eq("PEPPERED")
   end
 
-
 end
