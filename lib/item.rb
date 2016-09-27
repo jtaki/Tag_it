@@ -1,81 +1,34 @@
-require 'roo-xls'
+require_relative 'tagit/item_helper'
 
 class Item
-  attr_reader :line1, :line2, :description, :weight, :mod
+  include Helper
+  attr_reader :num, :line1, :line2, :weight, :suffix, :pack, :brand,
+              :price, :upc, :vin, :sym, :cw, :rw, :child, :slot, :compare
 
-  def initialize(name, weight)
-    @description = clean_names(name)
+  def initialize(num,nam,wei,pac,bra,pri,upc,vin,sym,cw,rw,slo)
+    @num    = num.to_i
+    @description = clean_names(nam)
     @line1  = separate_lines(@description)[0]
     @line2  = separate_lines(@description)[1]
-    @weight = get_weight_num(weight)
-    @mod    = get_weight_suffix(weight)
-  end
+    @weight = get_weight_num(wei)
+    @suffix = get_weight_suffix(wei)
+    @pack   = pac.to_i
+    @brand  = bra.strip
+    @price  = clean_price(pri)
+    @upc    = upc.to_s
+    @vin    = vin.to_i
+    @sym    = clean_text(sym)
+    @cw     = clean_text(cw)
+    @rw     = clean_text(rw)
+    @child  = is_child(num)
+    @slot   = clean_text(slo)
 
+  end
 
 
 private
 
-  def clean_names(name)
-    case name
-    # #remove preceeding "EA " from string
-    when /^(.|)EA\s/
-      name.gsub(/^(.|)EA\s/,"").upcase
-    else
-      #remove unnecessary spaces to finalize
-      name.strip.upcase
-    end
-  end
 
-  def separate_lines(desc)
-    desc = clean_names(desc)
-    return desc.split(',').map{|x| x.strip.upcase}
-  end
-
-  def get_weight_num(weight)
-    weight.gsub(/((-\d*{2})+\D*)|[^+(0-9)\.]/,"").to_f
-  end
-
-  def get_weight_suffix(x)
-    case x
-    when /\A[#]10/
-      'CAN'
-    when /[#]|LB(.*)/
-      'LB'
-    when /(O|)Z(.*)/
-      'OZ'
-    when /G(A|)L/
-      'GAL'
-    when /CT(.*)/
-      'CT'
-    when /BSKT(.*)/
-      'BSKT'
-    when /PK(.*)/
-      'PK'
-    when /EACH(.*)|EA(.*)/
-      'EA'
-    when /PINT(.*)|PT(.*)/
-      'PT'
-    when /PC(.*)/
-      'PC'
-    when /UP(.*)/
-      # x or more pieces per lb
-      'UP'
-    when /KG(.*)/
-      'KG'
-    when /ML/
-      'ML'
-    when /BUNCH/
-      'BUNCH'
-    when /DZN/
-      'DZN'
-    when /GM(.*)/
-      'GM'
-    when /FT(.*)/
-      'FT'
-    when /QT(.*)/
-      'QT'
-    end
-
-  end
+ # unless it is a RW item, calculate comparative price
 
 end
