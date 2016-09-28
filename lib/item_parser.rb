@@ -7,7 +7,7 @@ require 'roo-xls'
 
 
 itemsheet = Roo::Spreadsheet.open('data/vplbl3h9bent.xls')
-items = []
+
 header = [ "ItemNumber",
             "DescLine1",
             "DescLine2",
@@ -25,6 +25,7 @@ header = [ "ItemNumber",
 # for each line in spreadsheet
 # importing relevant information
 # rows to items
+items = []
 2.upto(itemsheet.last_row) do |line|
   num     = itemsheet.cell('A', line)
   nam     = itemsheet.cell('F', line)
