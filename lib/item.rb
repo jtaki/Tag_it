@@ -1,9 +1,13 @@
 require_relative 'tagit/item_helper'
+require_relative 'tagit/comparative_price'
 
 class Item
   include Helper
+  include Comparative
+
   attr_reader :num, :line1, :line2, :weight, :suffix, :pack, :brand,
-              :price, :upc, :vin, :sym, :cw, :rw, :child, :slot, :compare
+              :price, :upc, :vin, :sym, :cw, :rw, :child, :slot, :compare,
+              :comp_unit, :comp_price
 
   def initialize(num,nam,wei,pac,bra,pri,upc,vin,sym,cw,rw,slo = nil)
     @num    = num.to_i
@@ -14,7 +18,7 @@ class Item
     @suffix = get_weight_suffix(wei)
     @pack   = pac.to_i
     @brand  = bra.strip
-    @price  = clean_price(pri)
+    @price  = pri.to_f
     @upc    = upc.to_s
     @vin    = vin.to_i
     @sym    = clean_text(sym)
@@ -22,6 +26,8 @@ class Item
     @rw     = rw == "Y" ? true : false
     @child  = is_child(num)
     @slot   = slo
+    @comp_unit  = get_comparative_units(self)
+    @comp_price = get_compared_price(self)
 
   end
 

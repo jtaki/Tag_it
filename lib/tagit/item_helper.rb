@@ -71,10 +71,10 @@ module Helper
     end
   end
 
-  def clean_price(price)
-    price = price.to_f
-    return "$#{price}"
-  end
+  # def clean_price(price)
+  #   price = price.to_f
+  #   return "$#{price}"
+  # end
 
 
   # def comparative_price(price, rw, suff)

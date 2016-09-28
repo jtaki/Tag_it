@@ -20,7 +20,9 @@ header = [ "ItemNumber",
             "VIN",
             "Symbol",
             "Price",
-            "PerUnit"
+            "PerUnit",
+            "ComparativePrice",
+            "ComparativeUnits"
           ]
 # for each line in spreadsheet
 # importing relevant information
@@ -59,12 +61,14 @@ items.each do |i|
   ary << i.upc
   ary << i.vin
   ary << i.sym
-  ary << i.price
+  ary << "$#{i.price}"
   if i.cw == true
     ary << "PER #{i.suffix}"
   else
     ary << "UNIT"
   end
+  ary << i.comp_price
+  ary << i.comp_unit
 
   allitems << ary
 end
