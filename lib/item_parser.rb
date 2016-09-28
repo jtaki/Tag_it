@@ -15,11 +15,11 @@ header = [ "ItemNumber",
             "Size",
             "Suffix",
             "Brand",
-            "Price",
-            "UPC",
             "Slot",
+            "UPC",
             "VIN",
             "Symbol",
+            "Price",
             "PerUnit"
           ]
 # for each line in spreadsheet
@@ -59,7 +59,7 @@ items.each do |i|
   ary << i.vin
   ary << i.sym
   ary << i.price
-  if i.cw == "Y"
+  if i.cw == true
     ary << "PER #{i.suffix}"
   else
     ary << "UNIT"
