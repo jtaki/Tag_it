@@ -8,19 +8,19 @@ require 'roo-xls'
 
 itemsheet = Roo::Spreadsheet.open('data/vplbl3h9bent.xls')
 items = []
-header = [ "num",
-            "line1",
-            "line2",
-            "pack",
-            "size",
-            "suffix",
-            "brand",
-            "price",
-            "upc",
+header = [ "ItemNumber",
+            "DescLine1",
+            "DescLine2",
+            "Pack",
+            "Size",
+            "Suffix",
+            "Brand",
+            "Price",
+            "UPC",
             "Slot",
-            "vin",
-            "symbol",
-            "per unit"
+            "VIN",
+            "Symbol",
+            "PerUnit"
           ]
 # for each line in spreadsheet
 # importing relevant information
@@ -54,11 +54,11 @@ items.each do |i|
   ary << i.weight
   ary << i.suffix
   ary << i.brand
-  ary << i.price
   ary << i.slot
   ary << i.upc
   ary << i.vin
   ary << i.sym
+  ary << i.price
   if i.cw == "Y"
     ary << "PER #{i.suffix}"
   else
