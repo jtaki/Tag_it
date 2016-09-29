@@ -3,7 +3,7 @@ module Comparative
   def get_comparative_units(item)
     if    item.rw     == true
       nil
-    elsif    item.suffix == "CAN"
+    elsif item.suffix == "CAN"
       nil
     elsif (item.weight <=  1) && (item.pack <= 1)
       nil
