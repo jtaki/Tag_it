@@ -50,7 +50,7 @@ unnamed_nums = imports_numbers - existing_numbers
 exports = imports.select { |h| unnamed_nums.include?(h.values_at(:num)) }
 # push all unnamed numbers & names to cs
 
-CSV.open('rename_these.csv', "w", :row_sep => :auto) do |csv|
+CSV.open('custom/output/rename_these.csv', "w", :row_sep => :auto) do |csv|
   exports.each do |e|
     csv << [e.values_at(:num), e.values_at(:desc)].flatten
   end
