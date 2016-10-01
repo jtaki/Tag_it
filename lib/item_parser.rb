@@ -8,6 +8,23 @@ require 'roo-xls'
 
 itemsheet = Roo::Spreadsheet.open('data/vplbl3h9bent.xls')
 
+# custom = CSV.open('custom/logs/custom.csv','r')
+# puts custom.find{|col| col[0] == '10242'}.values_at(1)
+# abort
+# puts itemsheet.cell('M', 2)
+# abort
+# # line 0 and 1 for array
+def find_custom(line,num)
+  custom = CSV.open('custom/logs/custom.csv','r')
+  custom.column(1).each do |i|
+    i.to_i
+  end
+  a = custom.find{|col| col[0] == num }.values_at( line )
+  return a
+end
+
+
+
 header = [ "ItemNumber",
             "DescLine1",
             "DescLine2",
@@ -33,16 +50,19 @@ items = []
   nam     = itemsheet.cell('F', line)
   wei     = itemsheet.cell('D', line)
   pac     = itemsheet.cell('C', line)
-  bra     = itemsheet.cell('E', line)
   pri     = itemsheet.cell('G', line)
-  upc     = itemsheet.cell('M', line)
-  vin     = itemsheet.cell('W', line)
-  sym     = itemsheet.cell('V', line)
   cw      = itemsheet.cell('R', line)
   rw      = itemsheet.cell('S', line)
-  slo     = itemsheet.cell('I', line)
-  # create a new item
-  item = Item.new(num,nam,wei,pac,bra,pri,upc,vin,sym,cw,rw)
+  item = Item.new(num,nam,wei,pac,pri,cw,rw){
+    @line1    = find_custom(1,self.num)
+    @line2    = find_custom(2,self.num)
+    @brand    = itemsheet.cell('E', line)
+    @upc      = itemsheet.cell('M', line)
+    @vin      = itemsheet.cell('W', line)
+    @symbol   = itemsheet.cell('V', line)
+    @slot     = itemsheet.cell('I', line)
+  }
+  # puts find_custom(1,'41033')
   items << item
 end
 
