@@ -55,5 +55,3 @@ CSV.open('custom/output/rename_these.csv', "w", :row_sep => :auto) do |csv|
     csv << [e.values_at(:num), e.values_at(:desc)].flatten
   end
 end
-
-puts "#{exports.count} items to rename"
