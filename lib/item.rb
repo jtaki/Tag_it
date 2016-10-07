@@ -24,13 +24,17 @@ class Item
     # @line2  = find_custom(2,self.num)
   end
 
-  def find_custom(line,num)
-    custom = Roo::Spreadsheet.open('custom/logs/custom.csv', csv_options: {encoding: Encoding::ISO_8859_1})
-      custom.each(num: 'ITEM') do |i|
-        i.to_i
-      end
-    arr = custom.find{|col| col[0] == num }.values_at( line )
-    return arr
+
+  #returns array of matched custom names
+  # [custom 1 , custom 2]
+  def find_custom
+    custom = Roo::Spreadsheet.open('custom/logs/custom.xlsx')
+    custom = custom.parse(num: 'ITEM', c1: 'Custom1', c2:'Custom2')
+    #find the custom name value at line for col
+    a = custom.select{|hash| hash[:num] == self.num }
+    a = a.first
+    # puts a[:c1]
+    return a[:c1]
   end
 
 

@@ -1,6 +1,6 @@
 require_relative 'spec_helper'
 
-def find_custom(col,num)
+def find_custom(num)
   custom = Roo::Spreadsheet.open('custom/logs/custom.xlsx')
   custom = custom.parse(num: 'ITEM', c1: 'Custom1', c2:'Custom2')
   #find the custom name value at line for col
@@ -14,7 +14,8 @@ describe Item do
     let(:item){41033}
 
     it "matches with and outputs correct name" do
-      expect(find_custom(1, 41033)).to eq("SHIRES OF ENGLAND")
+      expect(find_custom(41033)).to eq("SHIRES OF ENGLAND")
     end
   end
+
 end

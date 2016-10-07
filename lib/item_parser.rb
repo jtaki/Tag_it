@@ -2,18 +2,11 @@
 # uses item cleanup methods and import file to create new items
 
 require_relative 'item'
-require_relative 'import'
+# require_relative 'import'
 require 'roo-xls'
 
 
 itemsheet = Roo::Spreadsheet.open('data/vplbl3h9bent.xls',csv_options: {encoding: Encoding::UTF_8})
-
-# custom = CSV.open('custom/logs/custom.csv','r')
-# puts custom.find{|col| col[0] == '10242'}.values_at(1)
-# abort
-# puts itemsheet.cell('M', 2)
-# abort
-# # line 0 and 1 for array
 
 
 header = [ "ItemNumber",
@@ -50,17 +43,18 @@ items = []
   sym      = itemsheet.cell('V', line)
   slot     = itemsheet.cell('I', line)
   item = Item.new(num,nam,wei,pac,pri,cw,rw,brand,upc,vin,sym,slot)
-  # puts find_custom(1,'41033')
+
   items << item
 end
+
 
 allitems = []
 # items to each own array
 items.each do |i|
   ary = []
   ary << i.num
-  ary << i.find_custom(1,i.num)
-  ary << i.line2
+  ary << i.find_custom
+  ary << i.find_custom
   ary << i.pack
   ary << i.weight
   ary << i.suffix
