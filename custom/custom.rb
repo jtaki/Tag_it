@@ -8,7 +8,7 @@ require './lib/tagit/item_helper'
 
 include Helper
 # Load array of item numbers to upload.
-importsheet = Roo::Spreadsheet.open('data/vplbl3h9bent.xls')
+importsheet = Roo::Spreadsheet.open('data/vplbl3h9bent.xls',csv_options: {encoding: Encoding::UTF_8})
 
 imports = []
 2.upto(importsheet.last_row) do |line|

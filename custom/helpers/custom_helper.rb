@@ -12,7 +12,7 @@ module Custom
       end
 
 
-    Roo::Spreadsheet.open('custom/logs/custom.csv',"a", :row_sep => :auto) do |csv|
+    Roo::Spreadsheet.open('custom/logs/custom.csv',"a", :row_sep => :auto, csv_options: {encoding: Encoding::UTF-8}) do |csv|
       csv << renamed
     end
 

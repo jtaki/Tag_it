@@ -9,7 +9,7 @@ class Item
               :price, :cw, :rw, :child, :slot, :compare,
               :comp_unit, :comp_price, :upc, :vin, :sym
 
-  def initialize(num,nam,wei,pac,pri,cw,rw)
+  def initialize(num,nam,wei,pac,pri,cw,rw,brand,upc,vin,symn,slot)
     @num    = num.to_i
     @description = clean_names(nam)
     @weight = get_weight_num(wei)
@@ -20,13 +20,20 @@ class Item
     @rw     = rw == "Y" ? true : false
     @comp_unit  = get_comparative_units(self)
     @comp_price = get_compared_price(self)
+    # @line1  = find_custom(1,self.num)
+    # @line2  = find_custom(2,self.num)
+  end
+
+  def find_custom(line,num)
+    custom = Roo::Spreadsheet.open('custom/logs/custom.csv', csv_options: {encoding: Encoding::ISO_8859_1})
+      custom.each(num: 'ITEM') do |i|
+        i.to_i
+      end
+    arr = custom.find{|col| col[0] == num }.values_at( line )
+    return arr
   end
 
 
-
-private
-
-
- # unless it is a RW item, calculate comparative price
+   # unless it is a RW item, calculate comparative price
 
 end

@@ -6,7 +6,7 @@ require_relative 'import'
 require 'roo-xls'
 
 
-itemsheet = Roo::Spreadsheet.open('data/vplbl3h9bent.xls')
+itemsheet = Roo::Spreadsheet.open('data/vplbl3h9bent.xls',csv_options: {encoding: Encoding::UTF_8})
 
 # custom = CSV.open('custom/logs/custom.csv','r')
 # puts custom.find{|col| col[0] == '10242'}.values_at(1)
@@ -14,15 +14,6 @@ itemsheet = Roo::Spreadsheet.open('data/vplbl3h9bent.xls')
 # puts itemsheet.cell('M', 2)
 # abort
 # # line 0 and 1 for array
-def find_custom(line,num)
-  custom = CSV.open('custom/logs/custom.csv','r')
-  custom.column(1).each do |i|
-    i.to_i
-  end
-  a = custom.find{|col| col[0] == num }.values_at( line )
-  return a
-end
-
 
 
 header = [ "ItemNumber",
@@ -53,15 +44,12 @@ items = []
   pri     = itemsheet.cell('G', line)
   cw      = itemsheet.cell('R', line)
   rw      = itemsheet.cell('S', line)
-  item = Item.new(num,nam,wei,pac,pri,cw,rw){
-    @line1    = find_custom(1,self.num)
-    @line2    = find_custom(2,self.num)
-    @brand    = itemsheet.cell('E', line)
-    @upc      = itemsheet.cell('M', line)
-    @vin      = itemsheet.cell('W', line)
-    @symbol   = itemsheet.cell('V', line)
-    @slot     = itemsheet.cell('I', line)
-  }
+  brand    = itemsheet.cell('E', line)
+  upc      = itemsheet.cell('M', line)
+  vin      = itemsheet.cell('W', line)
+  sym      = itemsheet.cell('V', line)
+  slot     = itemsheet.cell('I', line)
+  item = Item.new(num,nam,wei,pac,pri,cw,rw,brand,upc,vin,sym,slot)
   # puts find_custom(1,'41033')
   items << item
 end
@@ -71,7 +59,7 @@ allitems = []
 items.each do |i|
   ary = []
   ary << i.num
-  ary << i.line1
+  ary << i.find_custom(1,i.num)
   ary << i.line2
   ary << i.pack
   ary << i.weight
@@ -99,7 +87,7 @@ end
 ########
 puts "Created #{items.count} items just now"
 
-puts items.first
+puts items.first.num
 
 
 # export all items to csv #
