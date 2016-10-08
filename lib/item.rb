@@ -9,7 +9,7 @@ class Item
               :price, :cw, :rw, :child, :slot, :compare,
               :comp_unit, :comp_price, :upc, :vin, :sym
 
-  def initialize(num,nam,wei,pac,pri,cw,rw,brand,upc,vin,symn,slot)
+  def initialize(num,nam,wei,pac,pri,cw,rw,brand,upc,vin,sym,slot)
     @num    = num.to_i
     @description = clean_names(nam)
     @weight = get_weight_num(wei)
@@ -20,8 +20,11 @@ class Item
     @rw     = rw == "Y" ? true : false
     @comp_unit  = get_comparative_units(self)
     @comp_price = get_compared_price(self)
-    # @line1  = find_custom(1,self.num)
-    # @line2  = find_custom(2,self.num)
+    @brand = brand.to_s.strip
+    @slot = slot.to_s
+    @upc = upc.to_s.strip
+    @vin = vin.to_s
+    @sym = sym.to_s.strip
   end
 
 
