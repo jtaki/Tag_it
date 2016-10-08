@@ -2,14 +2,14 @@
 # uses item cleanup methods and import file to create new items
 
 require_relative 'item'
-# require_relative 'import'
 require 'roo-xls'
 
 
 
 
 itemsheet = Roo::Spreadsheet.open('data/vplbl3h9bent.xls',csv_options: {encoding: Encoding::UTF_8})
-
+custom = Roo::Spreadsheet.open('custom/output/custom2.csv', csv_options: {encoding: Encoding::ISO_8859_1})
+custom = custom.parse(num: 'ITEM', c1: 'Custom1', c2:'Custom2')
 
 header = [ "ItemNumber",
             "DescLine1",
@@ -55,8 +55,8 @@ allitems = []
 items.each do |i|
   ary = []
   ary << i.num
-  ary << i.find_custom
-  # ary << i.find_custom
+  ary << i.find_custom(custom)
+  ary << i.find_custom2(custom)
   ary << i.pack
   ary << i.weight
   ary << i.suffix
