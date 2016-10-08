@@ -7,7 +7,7 @@ require 'roo-xls'
 
 
 
-abort
+
 itemsheet = Roo::Spreadsheet.open('data/vplbl3h9bent.xls',csv_options: {encoding: Encoding::UTF_8})
 
 
@@ -56,7 +56,7 @@ items.each do |i|
   ary = []
   ary << i.num
   ary << i.find_custom
-  ary << i.find_custom
+  # ary << i.find_custom
   ary << i.pack
   ary << i.weight
   ary << i.suffix
