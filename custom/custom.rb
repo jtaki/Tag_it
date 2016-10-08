@@ -29,6 +29,7 @@ imports.each do |x|
   imports_numbers << n
 end
 
+
 existing = Roo::Spreadsheet.open('custom/logs/custom.xlsx')
 array = []
 2.upto(existing.last_row) do |line|

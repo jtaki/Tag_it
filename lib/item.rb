@@ -33,7 +33,7 @@ class Item
     #find the custom name value at line for col
     a = custom.select{|hash| hash[:num] == self.num }
     a = a.first
-    # puts a[:c1]
+    puts a[:c1]
     return a[:c1]
   end
 

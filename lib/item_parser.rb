@@ -6,6 +6,8 @@ require_relative 'item'
 require 'roo-xls'
 
 
+
+abort
 itemsheet = Roo::Spreadsheet.open('data/vplbl3h9bent.xls',csv_options: {encoding: Encoding::UTF_8})
 
 

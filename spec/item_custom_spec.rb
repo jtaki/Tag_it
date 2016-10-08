@@ -6,15 +6,15 @@ def find_custom(num)
   #find the custom name value at line for col
   a = custom.select{|hash| hash[:num] == num }
   a = a.first
-  return a[:c1]
+  return a[:c2]
 end
 
 describe Item do
   describe "custom names" do
-    let(:item){41033}
+    let(:item){3201069}
 
     it "matches with and outputs correct name" do
-      expect(find_custom(41033)).to eq("SHIRES OF ENGLAND")
+      expect(find_custom(item)).to eq("PARIS TOASTS")
     end
   end
 
