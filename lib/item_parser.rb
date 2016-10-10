@@ -3,13 +3,17 @@
 
 require_relative 'item'
 require 'roo-xls'
+require_relative './tagit/compile'
 
-
+include Compiler
+compiler
 
 
 itemsheet = Roo::Spreadsheet.open('data/vplbl3h9bent.xls',csv_options: {encoding: Encoding::UTF_8})
-custom = Roo::Spreadsheet.open('custom/output/custom2.csv', csv_options: {encoding: Encoding::ISO_8859_1})
+custom = Roo::Spreadsheet.open('custom/logs/custom.csv', csv_options: {encoding: Encoding::ISO_8859_1})
 custom = custom.parse(num: 'ITEM', c1: 'Custom1', c2:'Custom2')
+
+
 
 header = [ "ItemNumber",
             "DescLine1",
