@@ -18,8 +18,7 @@ custom = custom.parse(num: 'ITEM', c1: 'Custom1', c2:'Custom2')
 header = [ "ItemNumber",
             "DescLine1",
             "DescLine2",
-            "Pack",
-            "Size",
+            "PackSize",
             "Suffix",
             "Brand",
             "Slot",
@@ -61,8 +60,7 @@ items.each do |i|
   ary << i.num
   ary << i.find_custom(custom)
   ary << i.find_custom2(custom)
-  ary << i.pack
-  ary << i.weight
+  ary << "#{i.pack} / #{i.weight}"
   ary << i.suffix
   ary << i.brand
   ary << i.slot
