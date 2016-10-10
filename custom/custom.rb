@@ -8,7 +8,7 @@ require './lib/tagit/item_helper'
 
 include Helper
 # Load array of item numbers to upload.
-importsheet = Roo::Spreadsheet.open('data/vplbl3h9bent.xls',csv_options: {encoding: Encoding::UTF_8})
+importsheet = Roo::Spreadsheet.open("data/vplbl3h8c.xls",csv_options: {encoding: Encoding::UTF_8})
 
 imports = []
 2.upto(importsheet.last_row) do |line|
@@ -52,6 +52,7 @@ exports = imports.select { |h| unnamed_nums.include?(h.values_at(:num)) }
 # push all unnamed numbers & names to cs
 
 CSV.open('custom/output/rename_these.csv', "w", :row_sep => :auto) do |csv|
+  csv << ['ITEM','OLD NAME', 'Custom1', 'Custom2']
   exports.each do |e|
     csv << [e.values_at(:num), e.values_at(:desc)].flatten
   end

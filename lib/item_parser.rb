@@ -9,7 +9,7 @@ include Compiler
 compiler
 
 
-itemsheet = Roo::Spreadsheet.open('data/vplbl3h9bent.xls',csv_options: {encoding: Encoding::UTF_8})
+itemsheet = Roo::Spreadsheet.open('data/vplbl3h8c.xls',csv_options: {encoding: Encoding::UTF_8})
 custom = Roo::Spreadsheet.open('custom/logs/custom.csv', csv_options: {encoding: Encoding::ISO_8859_1})
 custom = custom.parse(num: 'ITEM', c1: 'Custom1', c2:'Custom2')
 

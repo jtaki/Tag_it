@@ -16,15 +16,22 @@ module Compiler
           custom_main << hash
         end
       end
-    end
 
-    CSV.open('custom/logs/custom.csv','w') do |csv|
-      custom_main.each do |item|
-        csv << item.values
+
+      CSV.open('custom/logs/custom.csv','w') do |csv|
+        custom_main.each do |item|
+          csv << item.values
+        end
       end
+
+      CSV.open('custom/output/rename_these.csv', 'w') do |csv|
+        csv << ['ITEM','Custom1','Custom2']
+      end
+
     end
   end
 end
 
-include Compiler
-compiler
+# 
+# include Compiler
+# compiler
