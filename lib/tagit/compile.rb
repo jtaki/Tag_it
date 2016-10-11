@@ -4,7 +4,7 @@ module Compiler
   #start open rename_these and custom.xlsx
   def compiler
 
-    custom_new = Roo::Spreadsheet.open('custom/output/rename_these.csv')
+    custom_new = Roo::Spreadsheet.open('data/rename_these.csv')
     custom_main = Roo::Spreadsheet.open('custom/logs/custom.csv',csv_options: {encoding: Encoding::ISO_8859_1})
 
     unless custom_new.count <= 1
@@ -24,7 +24,7 @@ module Compiler
         end
       end
 
-      CSV.open('custom/output/rename_these.csv', 'w') do |csv|
+      CSV.open('data/rename_these.csv', 'w') do |csv|
         csv << ['ITEM','Custom1','Custom2']
       end
 
@@ -32,6 +32,6 @@ module Compiler
   end
 end
 
-# 
+#
 # include Compiler
 # compiler

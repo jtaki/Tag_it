@@ -23,6 +23,6 @@
 3. run lib/item_parser.rb
 
 # make a powershell executable on windows
-C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -command "& 'C:\Users\jtakiguchi\desktop\Tag_it--master\custom\custom.rb'"
+- C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -command "& 'C:\Users\jtakiguchi\desktop\Tag_it--master\custom\custom.rb'"
 
 - will need to open and save db file before use -____-
