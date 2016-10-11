@@ -19,7 +19,6 @@ header = [ "ItemNumber",
             "DescLine1",
             "DescLine2",
             "PackSize",
-            "Suffix",
             "Brand",
             "Slot",
             "UPC",
@@ -60,8 +59,7 @@ items.each do |i|
   ary << i.num
   ary << i.find_custom(custom)
   ary << i.find_custom2(custom)
-  ary << "#{i.pack} / #{i.weight}"
-  ary << i.suffix
+  ary << "#{i.pack} / #{i.weight} #{i.suffix}"
   ary << i.brand
   ary << i.slot
   ary << i.upc
