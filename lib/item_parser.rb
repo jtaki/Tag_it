@@ -28,6 +28,7 @@ header = [ "ItemNumber",
             "PerUnit",
             "ComparativePrice",
             "ComparativeUnits"
+            "VenderID"
           ]
 # for each line in spreadsheet
 # importing relevant information
@@ -46,7 +47,8 @@ items = []
   vin      = itemsheet.cell('W', line)
   sym      = itemsheet.cell('V', line)
   slot     = itemsheet.cell('I', line)
-  item = Item.new(num,nam,wei,pac,pri,cw,rw,brand,upc,vin,sym,slot)
+  vid      = itemsheet.cell('N', line)
+  item = Item.new(num,nam,wei,pac,pri,cw,rw,brand,upc,vin,sym,slot,vid)
 
   items << item
 end
@@ -72,7 +74,7 @@ items.each do |i|
     ary << "UNIT"
   end
   ary << i.comp_price
-  ary << i.comp_unit
+  ary << i.comp_unit << vid
 
   allitems << ary
 end
