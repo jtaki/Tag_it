@@ -20,7 +20,6 @@ header = [ "ItemNumber",
             "DescLine2",
             "PackSize",
             "Brand",
-            "Slot",
             "UPC",
             "VIN",
             "Symbol",
@@ -46,9 +45,8 @@ items = []
   upc      = itemsheet.cell('M', line)
   vin      = itemsheet.cell('W', line)
   sym      = itemsheet.cell('V', line)
-  slot     = itemsheet.cell('I', line)
   vid      = itemsheet.cell('N', line)
-  item = Item.new(num,nam,wei,pac,pri,cw,rw,brand,upc,vin,sym,slot,vid)
+  item = Item.new(num,nam,wei,pac,pri,cw,rw,brand,upc,vin,sym,vid)
 
   items << item
 end
@@ -62,7 +60,7 @@ items.each do |i|
   ary << i.find_custom(custom).to_s.upcase
   ary << i.find_custom2(custom).to_s.upcase
   ary << "#{i.pack} / #{i.weight} #{i.suffix}"
-  ary << i.brand << i.slot << i.upc << i.vin << i.sym
+  ary << i.brand << i.upc << i.vin << i.sym
   ary << "$#{i.price}"
   if i.cw == true
     ary << "PER #{i.suffix}"
