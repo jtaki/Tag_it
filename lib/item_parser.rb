@@ -27,7 +27,7 @@ header = [ "ItemNumber",
             "Price",
             "PerUnit",
             "ComparativePrice",
-            "ComparativeUnits"
+            "ComparativeUnits",
             "VenderID"
           ]
 # for each line in spreadsheet
@@ -59,14 +59,10 @@ allitems = []
 items.each do |i|
   ary = []
   ary << i.num
-  ary << i.find_custom(custom)
-  ary << i.find_custom2(custom)
+  ary << i.find_custom(custom).to_s.upcase
+  ary << i.find_custom2(custom).to_s.upcase
   ary << "#{i.pack} / #{i.weight} #{i.suffix}"
-  ary << i.brand
-  ary << i.slot
-  ary << i.upc
-  ary << i.vin
-  ary << i.sym
+  ary << i.brand << i.slot << i.upc << i.vin << i.sym
   ary << "$#{i.price}"
   if i.cw == true
     ary << "PER #{i.suffix}"
@@ -74,7 +70,7 @@ items.each do |i|
     ary << "UNIT"
   end
   ary << i.comp_price
-  ary << i.comp_unit << vid
+  ary << i.comp_unit << i.vid
 
   allitems << ary
 end
