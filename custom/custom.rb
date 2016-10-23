@@ -30,7 +30,7 @@ imports.each do |x|
 end
 
 
-existing = Roo::Spreadsheet.open('custom/logs/custom.xlsx')
+existing = Roo::Spreadsheet.open('custom/logs/custom.csv')
 array = []
 2.upto(existing.last_row) do |line|
   item = {

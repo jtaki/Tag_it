@@ -17,6 +17,8 @@
 
 - error handling for no data query file
 
+- x remove the wipe of rename file from item parser and put only on custom namer
+
 
 # Usage
 1. Put YH Price Query into tagit/data (replace old file)
