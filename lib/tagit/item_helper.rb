@@ -43,6 +43,8 @@ module Helper
       'FT'
     when /QT(.*)/
       'QT'
+    when /HG(.*)/
+      'HG'
     end
 
   end
