@@ -73,15 +73,15 @@ module Helper
     end
   end
 
-  # def clean_price(price)
-  #   price = price.to_f
-  #   return "$#{price}"
-  # end
-
-
-  # def comparative_price(price, rw, suff)
-  #
-  # end
-
+  def cwtolb(suf,wt)
+    case suf
+    when 'LB'
+      1 * wt
+    when 'GM'
+       0.00220462 * wt
+    when 'OZ'
+       0.0625 * wt
+    end
+  end
 
 end

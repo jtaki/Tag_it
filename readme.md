@@ -18,6 +18,11 @@
 
 - x remove the wipe of rename file from item parser and put only on custom namer
 
+- for some reason catch weight items are not multiplying out correctly.
+- need conversion methods for catch weight
+- tag prints out per up
+- Get item weight included in download from rick, replace cwtolb with item weight. 
+
 
 # Usage
 1. Put YH Price Query into tagit/data (replace old file)

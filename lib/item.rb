@@ -16,8 +16,8 @@ class Item
     @suffix = get_weight_suffix(wei)
     @pack   = pac.to_i
     @price  = pri.to_f
-    @cw     = rw == "Y" ? true : false
-    @rw     = rw == "Y" ? true : false
+    @cw     = cw == "Y" ? (true) : (false)
+    @rw     = rw == "Y" ? (true) : (false)
     @comp_unit  = get_comparative_units(self)
     @comp_price = get_compared_price(self)
     @brand = brand.to_s.strip

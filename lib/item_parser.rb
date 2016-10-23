@@ -5,6 +5,7 @@ require_relative 'item'
 require 'roo-xls'
 require_relative './tagit/compile'
 
+include Helper
 include Compiler
 compiler
 
@@ -61,14 +62,22 @@ items.each do |i|
   ary << i.find_custom2(custom).to_s.upcase
   ary << "#{i.pack} / #{i.weight} #{i.suffix}"
   ary << i.brand << i.upc << i.vin << i.sym
-  ary << "$#{i.price}"
-  if i.cw == true
+  # price conditional for CW
+  if (i.cw == true) && (i.rw == false)
+    ary << "$#{(cwtolb( i.suffix, i.weight ) * i.pack).round(3) * i.price}"
+  else
+    ary << "$#{i.price}"
+  end
+
+  if i.rw == true
     ary << "PER #{i.suffix}"
   else
     ary << "UNIT"
   end
   ary << i.comp_price
   ary << i.comp_unit << i.vid
+
+
 
   allitems << ary
 end
