@@ -1,7 +1,11 @@
 module Helper
 
   def is_child(num)
-    num.match(/^3\d{5,6}/) ? true : false
+    num.to_s.match(/^(3\d{6}$|30\d{5}$)/) ? true : false
+  end
+
+  def parent
+    self.to_s.split('').drop(1).join.to_i if is_child(self)
   end
 
   def get_weight_suffix(x)

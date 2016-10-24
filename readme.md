@@ -21,7 +21,7 @@
 - for some reason catch weight items are not multiplying out correctly.
 - need conversion methods for catch weight
 - tag prints out per up
-- Get item weight included in download from rick, replace cwtolb with item weight. 
+- Get item weight included in download from rick, replace cwtolb with item weight.
 
 
 # Usage
@@ -29,3 +29,10 @@
 2. run custom script
   - rename items in output/rename_these.csv & save
 3. run tagit script
+
+
+- if is child,
+look for parent custom name
+identify parent #
+
+- if parent

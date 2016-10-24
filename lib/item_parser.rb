@@ -3,7 +3,7 @@
 
 require_relative 'item'
 require 'roo-xls'
-require_relative './tagit/compile'
+# require_relative './tagit/compile'
 
 include Helper
 include Compiler
