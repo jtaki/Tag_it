@@ -33,35 +33,23 @@ class Item
   def find_custom(file)
     #find the custom name value at line for col
     file.each do |hsh|
-      if hsh[:num].is_a?(String)
-        hsh[:num] = hsh[:num].to_i
-      else
-        next
-      end
+      hsh[:num] = hsh[:num].to_i if hsh[:num].is_a?(String)
     end
 
     a = file.select{|hash| hash[:num] == self.num }
     a = a.first
-    # puts a[:c1]
     return a[:c1]
   end
 
   def find_custom2(file)
     #find the custom name value at line for col
     file.each do |hsh|
-      if hsh[:num].is_a?(String)
-        hsh[:num] = hsh[:num].to_i
-      else
-        next
-      end
+      hsh[:num] = hsh[:num].to_i if hsh[:num].is_a?(String)
     end
 
     a = file.select{|hash| hash[:num] == self.num }
     a = a.first
-    # puts a[:c1]
     return a[:c2]
   end
-
-   # unless it is a RW item, calculate comparative price
 
 end

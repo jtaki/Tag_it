@@ -1,4 +1,5 @@
 require_relative 'spec_helper'
+include Helper
 
 
 describe Item do
@@ -13,6 +14,13 @@ describe Item do
     # it "matches with and outputs correct name" do
     #   expect(@item.find_custom(@custom)).to eq("BEAN THREAD NOODLES")
     # end
+    it 'item is a child' do
+      expect(is_child(@item.num)).to eq(true)
+    end
+
+    it 'can get parent number' do
+      expect(@item.num.parent).to eq(231034)
+    end
 
     it "matches with and outputs parent name" do
       expect(@item.find_custom(@custom)).to eq("BEAN THREAD NOODLES")

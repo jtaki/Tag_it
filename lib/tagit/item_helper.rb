@@ -4,6 +4,7 @@ module Helper
     num.to_s.match(/^(3\d{6}$|30\d{5}$)/) ? true : false
   end
 
+  #call on item number
   def parent
     self.to_s.split('').drop(1).join.to_i if is_child(self)
   end
