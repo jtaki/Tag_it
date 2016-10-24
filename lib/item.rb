@@ -30,26 +30,6 @@ class Item
 
   #returns array of matched custom names
   # [custom 1 , custom 2]
-  def find_custom(file)
-    #find the custom name value at line for col
-    file.each do |hsh|
-      hsh[:num] = hsh[:num].to_i if hsh[:num].is_a?(String)
-    end
 
-    a = file.select{|hash| hash[:num] == self.num }
-    a = a.first
-    return a[:c1]
-  end
-
-  def find_custom2(file)
-    #find the custom name value at line for col
-    file.each do |hsh|
-      hsh[:num] = hsh[:num].to_i if hsh[:num].is_a?(String)
-    end
-
-    a = file.select{|hash| hash[:num] == self.num }
-    a = a.first
-    return a[:c2]
-  end
 
 end

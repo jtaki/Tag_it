@@ -6,7 +6,33 @@ module Helper
 
   #call on item number
   def parent
-    self.to_s.split('').drop(1).join.to_i if is_child(self)
+    if is_child(self)
+      self.to_s.split('').drop(1).join.to_i
+    else
+      self
+    end 
+  end
+
+  def find_custom(file)
+    #find the custom name value at line for col
+    file.each do |hsh|
+      hsh[:num] = hsh[:num].to_i if hsh[:num].is_a?(String)
+    end
+
+    a = file.select{|hash| hash[:num] == self }
+    a = a.first
+    return a[:c1]
+  end
+
+  def find_custom2(file)
+    #find the custom name value at line for col
+    file.each do |hsh|
+      hsh[:num] = hsh[:num].to_i if hsh[:num].is_a?(String)
+    end
+
+    a = file.select{|hash| hash[:num] == self }
+    a = a.first
+    return a[:c2]
   end
 
   def get_weight_suffix(x)
