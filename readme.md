@@ -24,15 +24,12 @@
 - Get item weight included in download from rick, replace cwtolb with item weight.
 
 
+- custom only creates new lines for parents
+ # tests
+ - x creates rename line for 5&6 dig num
+
 # Usage
 1. Put YH Price Query into tagit/data (replace old file)
 2. run custom script
   - rename items in output/rename_these.csv & save
 3. run tagit script
-
-
-- if is child,
-look for parent custom name
-identify parent #
-
-- if parent

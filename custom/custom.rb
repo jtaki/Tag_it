@@ -17,15 +17,13 @@ imports = []
     desc: clean_names(importsheet.cell("F", line))
   }
   imports << item
-  # item = []
-  #   item << importsheet.cell("A", line).to_i
-  # imports << item
 end
 
 # return array of hash values for num symbol
 imports_numbers = []
 imports.each do |x|
   n = x.values_at(:num)
+  n.select!{|num| is_child(num) == false }
   imports_numbers << n
 end
 
@@ -48,14 +46,14 @@ end
 unnamed_nums = imports_numbers - existing_numbers
 
 # # # for each unnamed num, match item info back in from importsheet
-exports = imports.select { |h| unnamed_nums.include?(h.values_at(:num)) }
-# push all unnamed numbers & names to cs
+@exports = imports.select  { |h| unnamed_nums.include?(h.values_at(:num)) }
+
 
 CSV.open('data/rename_these.csv', "w", :row_sep => :auto) do |csv|
   csv << ['ITEM','OLD NAME', 'Custom1', 'Custom2']
-  exports.each do |e|
+  @exports.each do |e|
     csv << [e.values_at(:num), e.values_at(:desc)].flatten
   end
 end
 
-puts "#{exports.count} items to rename"
+puts "#{@exports.count} items to rename"
