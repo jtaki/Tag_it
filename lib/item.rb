@@ -28,8 +28,4 @@ class Item
   end
 
 
-  #returns array of matched custom names
-  # [custom 1 , custom 2]
-
-
 end

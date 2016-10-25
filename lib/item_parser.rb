@@ -1,6 +1,4 @@
 #!/usr/bin/env rubygems
-# uses item cleanup methods and import file to create new items
-
 require_relative 'item'
 require 'roo-xls'
 require_relative './tagit/compile'
