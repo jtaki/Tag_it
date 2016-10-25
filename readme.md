@@ -22,11 +22,8 @@
 - need conversion methods for catch weight
 - tag prints out per up
 - Get item weight included in download from rick, replace cwtolb with item weight.
+- child custom names pull from parent custom names. deprecated all child names
 
-
-- custom only creates new lines for parents
- # tests
- - x creates rename line for 5&6 dig num
 
 # Usage
 1. Put YH Price Query into tagit/data (replace old file)
