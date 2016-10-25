@@ -5,7 +5,7 @@ describe Comparative do
   # before(:each) do
   #   Item.reset_all
   # end
-  let(:item) { Item.new(  )}
+  let(:item) { Item.new( )}
 
   it "gets the comparative unit" do
     expect(get_comparative_units(item)).to eq("LB")
