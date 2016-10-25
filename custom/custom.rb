@@ -13,7 +13,7 @@ importsheet = Roo::Spreadsheet.open("data/vplbl3h8c.xls",csv_options: {encoding:
 imports = []
 2.upto(importsheet.last_row) do |line|
   item = {
-    num: importsheet.cell("A", line).to_i,
+    num: importsheet.cell("A", line).to_i.parent,
     desc: clean_names(importsheet.cell("F", line))
   }
   imports << item
@@ -21,14 +21,14 @@ end
 
 # return array of hash values for num symbol
 imports_numbers = []
-imports.each do |x|
+imports.uniq.each do |x|
   n = x.values_at(:num)
   n.select!{|num| is_child(num) == false }
   imports_numbers << n
 end
 
 
-existing = Roo::Spreadsheet.open('custom/logs/custom.csv')
+existing = Roo::Spreadsheet.open('custom/logs/custom.csv',csv_options: {encoding: Encoding::ISO_8859_1})
 array = []
 2.upto(existing.last_row) do |line|
   item = {

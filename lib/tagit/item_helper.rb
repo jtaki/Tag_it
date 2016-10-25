@@ -10,7 +10,7 @@ module Helper
       self.to_s.split('').drop(1).join.to_i
     else
       self
-    end 
+    end
   end
 
   def find_custom(file)

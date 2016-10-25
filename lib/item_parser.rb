@@ -3,7 +3,7 @@
 
 require_relative 'item'
 require 'roo-xls'
-# require_relative './tagit/compile'
+require_relative './tagit/compile'
 
 include Helper
 include Compiler
@@ -59,8 +59,8 @@ allitems = []
 items.each do |i|
   ary = []
   ary << i.num
-  ary << i.find_custom(custom).to_s.upcase
-  ary << i.find_custom2(custom).to_s.upcase
+  ary << i.num.parent.find_custom(custom).to_s.upcase
+  ary << i.num.parent.find_custom2(custom).to_s.upcase
   ary << "#{i.pack} / #{i.weight} #{i.suffix}"
   ary << i.brand << i.upc << i.vin << i.sym
   # price conditional for CW
