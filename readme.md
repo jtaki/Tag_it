@@ -30,3 +30,9 @@
 2. run custom script
   - rename items in output/rename_these.csv & save
 3. run tagit script
+
+
+# ERRORS 10/31
+
+- x price is not multiplying out for cw items
+- duplicating items to name in custom
