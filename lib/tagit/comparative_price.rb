@@ -14,7 +14,9 @@ module Comparative
 
   def get_compared_price(item)
     suf = get_comparative_units(item)
-    unless suf == nil
+    if item.cw == true
+      item.price
+    elsif suf != nil
       return item.price / (item.weight * item.pack)
     end
   end

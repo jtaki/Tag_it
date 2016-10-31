@@ -73,7 +73,13 @@ items.each do |i|
   else
     ary << "UNIT"
   end
-  ary << i.comp_price
+
+  if i.rw == true
+    ary << nil
+  else
+    ary << i.comp_price
+  end
+  
   ary << i.comp_unit << i.vid
 
 
