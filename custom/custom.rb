@@ -26,6 +26,7 @@ imports.uniq.each do |x|
   n.select!{|num| is_child(num) == false }
   imports_numbers << n
 end
+imports_numbers.uniq!
 
 
 existing = Roo::Spreadsheet.open('custom/logs/custom.csv',csv_options: {encoding: Encoding::ISO_8859_1})

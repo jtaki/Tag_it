@@ -9,8 +9,10 @@ describe Custom do
     expect(sheet).is_a?(Array)
   end
 
-  it "has two columns" do
+  xit "has two columns" do
 
   end
+
+
 
 end
