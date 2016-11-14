@@ -21,11 +21,15 @@ end
 
 # return array of hash values for num symbol
 imports_numbers = []
-imports.uniq.each do |x|
+imports.each do |x|
   n = x.values_at(:num)
-  n.select!{|num| is_child(num) == false }
-  imports_numbers << n
+  unless is_child(n)
+    unless imports_numbers.include?(n)
+        imports_numbers << n
+    end
+  end
 end
+
 imports_numbers.uniq!
 
 

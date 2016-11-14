@@ -10,8 +10,6 @@
 - What if not all items renamed
 - put length constraints on renaming items to make sure they fit on tag lines
 
-- x test on windows
-- x test OCRA gem
 - update gitignore
 
 - error handling for no data query file
@@ -26,10 +24,15 @@
 
 
 # Usage
-1. Put YH Price Query into tagit/data (replace old file)
-2. run custom script
-  - rename items in output/rename_these.csv & save
+1. Weekly or Daily file download should go into data folder as an .xls
+2. run 'custom' script
+  - Items without a custom name will output here.
+  - Add custom names to these records with excel.
 3. run tagit script
+  - Outputs data/tags_to_print.csv
+4. Open bartender 3.1 to print tags.
+
+If there are erros in the tags, you can edit straight from tags_to_print file.
 
 
 # ERRORS 10/31
