@@ -74,13 +74,15 @@ items.each do |i|
     ary << "UNIT"
   end
 
-  if i.rw == true
-    ary << nil
+
+  if i.rw == true || i.comp_price.nil? || i.comp_price < 0.01 
+    ary << nil << nil
   else
-    ary << i.comp_price
+    ary << i.comp_price << i.comp_unit
   end
-  
-  ary << i.comp_unit << i.vid
+
+
+  ary << i.vid
 
 
 
