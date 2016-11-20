@@ -69,14 +69,16 @@ items.each do |i|
   end
 
   if i.rw == true
-    ary << "PER #{i.suffix}"
+      ary << "PER #{i.suffix}"
   else
     ary << "UNIT"
   end
 
 
-  if i.rw == true || i.comp_price.nil? || i.comp_price < 0.01 
+  if i.rw == true || i.comp_price.nil? || i.comp_price < 0.01
     ary << nil << nil
+  elsif i.cw == true && i.rw == false
+    ary << i.comp_price << "PER LB"
   else
     ary << i.comp_price << i.comp_unit
   end

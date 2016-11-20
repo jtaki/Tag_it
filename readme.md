@@ -39,3 +39,9 @@ If there are erros in the tags, you can edit straight from tags_to_print file.
 
 - x price is not multiplying out for cw items
 - duplicating items to name in custom
+
+
+# errors 11/20
+- when item is rung up, cashier inputs pounds. regardless of whether item is weighed in =! pounds.
+ on tag:
+  total price = price * weight converted to lbs 

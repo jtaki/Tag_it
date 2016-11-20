@@ -112,6 +112,8 @@ module Helper
        0.00220462 * wt
     when 'OZ'
        0.0625 * wt
+    when 'KG'
+      2.20462 * wt
     end
   end
 
