@@ -36,7 +36,7 @@ items = []
 2.upto(itemsheet.last_row) do |line|
   num     = itemsheet.cell('A', line)
   nam     = itemsheet.cell('F', line)
-  wei     = itemsheet.cell('D', line).to_f
+  wei     = itemsheet.cell('D', line)
   pac     = itemsheet.cell('C', line).to_f
   pri     = itemsheet.cell('G', line).to_f
   cw      = itemsheet.cell('R', line)
