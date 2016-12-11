@@ -36,9 +36,9 @@ items = []
 2.upto(itemsheet.last_row) do |line|
   num     = itemsheet.cell('A', line)
   nam     = itemsheet.cell('F', line)
-  wei     = itemsheet.cell('D', line)
-  pac     = itemsheet.cell('C', line)
-  pri     = itemsheet.cell('G', line)
+  wei     = itemsheet.cell('D', line).to_f
+  pac     = itemsheet.cell('C', line).to_f
+  pri     = itemsheet.cell('G', line).to_f
   cw      = itemsheet.cell('R', line)
   rw      = itemsheet.cell('S', line)
   brand    = itemsheet.cell('E', line)
@@ -63,7 +63,7 @@ items.each do |i|
   ary << i.brand << i.upc << i.vin << i.sym
   # price conditional for CW
   if (i.cw == true) && (i.rw == false)
-    ary << "$#{(cwtolb( i.suffix, i.weight ) * i.pack).round(3) * i.price}"
+    ary << "$#{(cwtolb( i.suffix, i.weight ).to_f * i.pack).round(3) * i.price}"
   else
     ary << "$#{i.price}"
   end
