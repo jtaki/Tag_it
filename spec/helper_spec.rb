@@ -1,7 +1,7 @@
 require 'spec_helper'
 include Helper
 
-describe 'p/c helper methods' do
+describe 'parent child helper methods' do
   before do
     @childnum  = 3123456
     @childnum2 = 3034567
@@ -23,4 +23,26 @@ describe 'p/c helper methods' do
     expect(num).to eq(34567)
   end
 
+end
+
+
+describe 'weight suffix' do
+    let(:item) { Item.new(
+        1234567,
+        "test product 1",
+        "1 YES",
+        "60",
+        3.45,
+        "N",
+        "N",
+        "some brand",
+        "0987654321",
+        "12345",
+        "&",
+        "12345"
+      )}
+
+  it 'changes pound sign to lettering'do
+    expect(item.suffix).to eq('YES')
+  end
 end

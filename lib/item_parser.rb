@@ -43,8 +43,8 @@ items = []
   rw      = itemsheet.cell('S', line)
   brand    = itemsheet.cell('E', line)
   upc      = itemsheet.cell('M', line)
-  vin      = itemsheet.cell('W', line)
-  sym      = itemsheet.cell('V', line)
+  vin      = itemsheet.cell('V', line)
+  sym      = itemsheet.cell('U', line)
   vid      = itemsheet.cell('N', line)
   item = Item.new(num,nam,wei,pac,pri,cw,rw,brand,upc,vin,sym,vid)
 

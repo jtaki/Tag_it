@@ -76,6 +76,10 @@ module Helper
       'QT'
     when /HG(.*)/
       'HG'
+    when /RL(.*)/
+      'RL'
+    # when /(?<suffix>[a-zA-Z]{2,3})/ =~ x
+    #   suffix
     end
 
   end
