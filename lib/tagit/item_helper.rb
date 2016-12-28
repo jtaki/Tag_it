@@ -78,6 +78,9 @@ module Helper
       'HG'
     when /RL(.*)/
       'RL'
+    when /LT(.*)/
+      'L'
+
     # when /(?<suffix>[a-zA-Z]{2,3})/ =~ x
     #   suffix
     end
