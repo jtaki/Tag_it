@@ -93,7 +93,11 @@ module Helper
   end
 
   def get_weight_num(weight)
-    weight.gsub(/((-\d*{2})+\D*)|[^+(0-9)\.]/,"").to_f
+    if weight.include? "/"
+      weight.scan(/\d{1,}/).map(&:to_i).reduce(:*)
+    else
+      weight.gsub(/((-\d*{2})+\D*)|[^+(0-9)\.]/,"").to_f
+    end
   end
 
   def clean_text(text)
