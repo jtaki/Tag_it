@@ -87,6 +87,10 @@ module Helper
 
   end
 
+  def zero_to_one num
+   num == 0 ? 1 : num 
+  end
+
   def separate_lines(desc)
     desc = clean_names(desc)
     return desc.split(',').map{|x| x.strip.upcase}

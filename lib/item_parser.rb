@@ -59,7 +59,7 @@ items.each do |i|
   ary << i.num
   ary << i.num.parent.find_custom(custom).to_s.upcase
   ary << i.num.parent.find_custom2(custom).to_s.upcase
-  ary << "#{i.pack} / #{i.weight} #{i.suffix}"
+  ary << "#{i.pack} / #{zero_to_one(i.weight)} #{i.suffix}"
   ary << i.brand << i.upc << i.vin << i.sym
   # price conditional for CW
   if (i.cw == true) && (i.rw == false)
