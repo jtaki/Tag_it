@@ -96,8 +96,10 @@ end
 # tests #
 ########
 puts "Created #{items.count} items just now"
-
-puts items.first.num
+puts "==" * 9
+puts "categories: All(A) Dry(D), Chill(C), Frozen(F), Hazard(H)"
+puts "Print which category?"
+opt = gets.chomp 
 
 
 # export all items to csv #
