@@ -7,24 +7,25 @@ class Item
 
   attr_accessor :num, :line1, :line2, :weight, :suffix, :pack, :brand,
               :price, :cw, :rw, :child, :compare,
-              :comp_unit, :comp_price, :upc, :vin, :sym, :vid
+              :comp_unit, :comp_price, :upc, :vin, :sym, :vid, :area
 
-  def initialize(num,nam,wei,pac,pri,cw,rw,brand,upc,vin,sym,vid)
-    @num    = num.to_i
-    @description = clean_names(nam)
-    @weight = get_weight_num(wei)
-    @suffix = get_weight_suffix(wei)
-    @pack   = pac.to_i
-    @price  = pri.to_f
-    @cw     = cw == "Y" ? (true) : (false)
-    @rw     = rw == "Y" ? (true) : (false)
+  def initialize(hsh)
+    @num    = hsh[:FIITMN].to_i
+    @description = clean_names(hsh[:ITEMD])
+    @weight = get_weight_num(hsh[:FISZEI])
+    @suffix = get_weight_suffix(hsh[:FISZEI])
+    @pack   = hsh[:FIPCKI].to_i
+    @price  = hsh[:PRICE].to_f
+    @cw     = hsh[:CWCD] == "Y" ? (true) : (false)
+    @rw     = hsh[:RWCD] == "Y" ? (true) : (false)
     @comp_unit  = get_comparative_units(self)
     @comp_price = get_compared_price(self)
-    @brand = brand.to_s.strip
-    @upc = upc.to_s.strip
-    @vin = vin.to_s.strip
-    @sym = sym.to_s.strip
-    @vid = vid.strip
+    @brand = hsh[:BRAND].to_s.strip
+    @upc = hsh[:FUPCU].to_s.strip
+    @vin = hsh[:FJVIN2].to_s.strip
+    @sym = hsh[:DESC1].to_s.strip
+    @vid = hsh[:FVNDN].to_i
+    @area = hsh[:FFJDCFF]
   end
 
 

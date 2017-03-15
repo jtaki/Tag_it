@@ -13,7 +13,9 @@ itemsheet = Roo::Spreadsheet.open('data/vplbl3h8c.xls',csv_options: {encoding: E
 custom = Roo::Spreadsheet.open('custom/logs/custom.csv', csv_options: {encoding: Encoding::ISO_8859_1})
 custom = custom.parse(num: 'ITEM', c1: 'Custom1', c2:'Custom2')
 
-
+puts "categories: All(A) Dry(D), Chill(C), Frozen(F), Hazard(H)"
+puts "Print which category?"
+category = gets.chomp
 
 header = [ "ItemNumber",
             "DescLine1",
@@ -29,28 +31,29 @@ header = [ "ItemNumber",
             "ComparativeUnits",
             "VenderID"
           ]
+header_hash = { FIITMN: 'FIITMN',
+                ITEMD: 'ITEMD',
+                FISZEI: 'FISZEI',
+                FIPCKI: 'FIPCKI',
+                PRICE: 'PRICE',
+                CWCD: 'CWCD',
+                RWCD: 'RWCD',
+                BRAND: 'BRAND',
+                FUPCU: 'FUPCU',
+                FJVIN2: 'FJVIN2',
+                DESC1: 'DESC1',
+                FVNDN: 'FVNDN',
+                FFJDCFF: 'FFJDCFF'}
 # for each line in spreadsheet
 # importing relevant information
 # rows to items
 items = []
-2.upto(itemsheet.last_row) do |line|
-  num     = itemsheet.cell('A', line)
-  nam     = itemsheet.cell('F', line)
-  wei     = itemsheet.cell('D', line)
-  pac     = itemsheet.cell('C', line).to_f
-  pri     = itemsheet.cell('G', line).to_f
-  cw      = itemsheet.cell('R', line)
-  rw      = itemsheet.cell('S', line)
-  brand    = itemsheet.cell('E', line)
-  upc      = itemsheet.cell('M', line)
-  vin      = itemsheet.cell('V', line)
-  sym      = itemsheet.cell('U', line)
-  vid      = itemsheet.cell('N', line)
-  item = Item.new(num,nam,wei,pac,pri,cw,rw,brand,upc,vin,sym,vid)
 
+itemsheet.each(header_hash) do |hash|
+  item = Item.new(hash)
   items << item
 end
-
+items.shift
 
 allitems = []
 # items to each own array
@@ -97,9 +100,7 @@ end
 ########
 puts "Created #{items.count} items just now"
 puts "==" * 9
-puts "categories: All(A) Dry(D), Chill(C), Frozen(F), Hazard(H)"
-puts "Print which category?"
-opt = gets.chomp 
+
 
 
 # export all items to csv #
