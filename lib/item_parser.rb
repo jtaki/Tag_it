@@ -52,7 +52,7 @@ itemsheet.parse(header_hash).each do |hash|
   if item.area == ans
     items << item
   elsif ans == "a"
-    items << item unless item.num == 0 
+    items << item unless item.num == 0
   end
 end
 
@@ -101,6 +101,7 @@ end
 ########
 puts "Created #{items.count} items just now"
 puts "==" * 9
+sleep(5)
 
 
 
