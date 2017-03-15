@@ -25,8 +25,7 @@ class Item
     @vin = hsh[:FJVIN2].to_s.strip
     @sym = hsh[:DESC1].to_s.strip
     @vid = hsh[:FVNDN].to_i
-    @area = hsh[:FFJDCFF]
+    @area = hsh[:FFJDCFF].downcase
   end
-
 
 end

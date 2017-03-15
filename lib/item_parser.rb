@@ -14,8 +14,7 @@ custom = Roo::Spreadsheet.open('custom/logs/custom.csv', csv_options: {encoding:
 custom = custom.parse(num: 'ITEM', c1: 'Custom1', c2:'Custom2')
 
 puts "categories: All(A) Dry(D), Chill(C), Frozen(F), Hazard(H)"
-puts "Print which category?"
-category = gets.chomp
+ans = selection_prompt("Print which category?  ")
 
 header = [ "ItemNumber",
             "DescLine1",
@@ -44,16 +43,18 @@ header_hash = { FIITMN: 'FIITMN',
                 DESC1: 'DESC1',
                 FVNDN: 'FVNDN',
                 FFJDCFF: 'FFJDCFF'}
-# for each line in spreadsheet
-# importing relevant information
-# rows to items
+
 items = []
 
-itemsheet.each(header_hash) do |hash|
+
+itemsheet.parse(header_hash).each do |hash|
   item = Item.new(hash)
-  items << item
+  if item.area == ans
+    items << item
+  elsif ans == "a"
+    items << item unless item.num == 0 
+  end
 end
-items.shift
 
 allitems = []
 # items to each own array

@@ -88,7 +88,7 @@ module Helper
   end
 
   def zero_to_one num
-   num == 0 ? 1 : num 
+   num == 0 ? 1 : num
   end
 
   def separate_lines(desc)
@@ -130,6 +130,27 @@ module Helper
     when 'KG'
       2.20462 * wt
     end
+  end
+
+  def selection_prompt(question)
+    print question
+    ans = STDIN.gets.chomp.downcase
+    case ans
+    when "a"
+      ans = "a"
+    when "d"
+      ans = "d"
+    when "c"
+      ans = "c"
+    when "f"
+      ans = "f"
+    when "h"
+      ans = "h"
+    else
+      puts "please select valid letter A / D / C / F / H"
+      selection_prompt question
+    end
+    return ans
   end
 
 end
