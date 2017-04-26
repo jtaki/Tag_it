@@ -101,7 +101,7 @@ end
 ########
 puts "Created #{items.count} items just now"
 puts "==" * 9
-sleep(5)
+sleep(3)
 
 
 

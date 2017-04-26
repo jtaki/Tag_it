@@ -1,4 +1,3 @@
-
 module Comparative
   def get_comparative_units(item)
     if    item.rw     == true
