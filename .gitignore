@@ -3,3 +3,5 @@
 *.xlsx
 *.xls
 *.csv
+
+# also ignore custom names files so doesnt overwrite on pull 
