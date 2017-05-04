@@ -98,7 +98,7 @@ module Helper
 
   def get_weight_num(weight)
     if weight.include? "/"
-      weight.scan(/\d{1,}\.?\d{0,2}/).map(&:to_f).inject{&:*}
+      weight.scan(/\d{1,}\.?\d{0,2}/).map(&:to_f).inject(:*)
       #regex for 1 or more digits, allow for "." and 0-2 digits
     else
       weight.gsub(/((-\d*{2})+\D*)|[^+(0-9)\.]/,"").to_f
