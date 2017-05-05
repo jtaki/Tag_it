@@ -26,23 +26,28 @@ describe 'parent child helper methods' do
 end
 
 
-describe 'weight suffix' do
-    let(:item) { Item.new(
-        1234567,
-        "test product 1",
-        "1 YES",
-        "60",
-        3.45,
-        "N",
-        "N",
-        "some brand",
-        "0987654321",
-        "12345",
-        "&",
-        "12345"
-      )}
+describe 'weight suffix & num' do
+
+    let(:item) { Item.new({
+            :FITMN => "1234567",
+            :ITEMD => "test product 1",
+            :FISZEI => "6/13.5z",
+            :FIPCKI => "60",
+            :PRICE => "3.45",
+            :CWCD => "N",
+            :RWCD => "N",
+            :BRAND => "some brand",
+            :FUPCU => "0987654321",
+            :FJVIN2 => "12345",
+            :DESC1 => "&",
+            :FVNDN => "12345"
+          })}
 
   it 'changes pound sign to lettering'do
-    expect(item.suffix).to eq('YES')
+    expect(item.suffix).to eq('LB')
+  end
+
+  it 'works with fractional numbers' do
+    expect(item.weight).to eq(81)
   end
 end

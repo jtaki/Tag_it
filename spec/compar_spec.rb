@@ -1,4 +1,5 @@
 require_relative 'spec_helper'
+include Comparative
 
 describe Comparative do
 
@@ -6,28 +7,29 @@ describe Comparative do
   #   Item.reset_all
   # end
   before do
-    @item = Item.new(
-        num: "1234567",
-        nam: "test product 1",
-        wei: "3.25#",
-        pac: "60",
-        pri: "3.45",
-        cw: "N",
-        rw: "N",
-        brand: "some brand",
-        upc: "0987654321",
-        vin: "12345",
-        sym: "&",
-        vid: "12345"
-      )
+    hsh = {
+        :FITMN => "1234567",
+        :ITEMD => "test product 1",
+        :FISZEI => "3.25#",
+        :FIPCKI => "60",
+        :PRICE => "3.45",
+        :CWCD => "N",
+        :RWCD => "N",
+        :BRAND => "some brand",
+        :FUPCU => "0987654321",
+        :FJVIN2 => "12345",
+        :DESC1 => "&",
+        :FVNDN => "12345"
+      }
+    @item = Item.new(hsh)
   end
 
   it "gets the comparative unit" do
-    expect(get_comparative_units(@item)).to eq("LB")
+    expect(get_comparative_units(@item)).to eq("PER LB")
   end
 
   it "creates comparative price" do
-    expect(get_compared_price(@item)).to eq(3.25/60)
+    expect(get_compared_price(@item)).to eq(3.45/(60 * 3.25))
   end
 
 
