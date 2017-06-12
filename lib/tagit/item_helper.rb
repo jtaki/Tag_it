@@ -70,7 +70,7 @@ module Helper
       'DZN'
     when /GM(.*)/
       'GM'
-    when /FT(.*)/
+    when /FT(.*)|'/
       'FT'
     when /QT(.*)/
       'QT'
@@ -98,10 +98,12 @@ module Helper
 
   def get_weight_num(weight)
     if weight.include? "/"
-      weight.scan(/\d{1,}\.?\d{0,2}/).map(&:to_f).inject(:*)
+      num = weight.scan(/\d{1,}\.?\d{0,2}/).map(&:to_f).inject(1,:/)
       #regex for 1 or more digits, allow for "." and 0-2 digits
+      return zero_to_one num
     else
-      weight.gsub(/((-\d*{2})+\D*)|[^+(0-9)\.]/,"").to_f
+      num = weight.gsub(/((-\d*{2})+\D*)|[^+(0-9)\.]/,"").to_f
+      return zero_to_one num
     end
   end
 

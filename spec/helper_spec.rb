@@ -31,7 +31,7 @@ describe 'weight suffix & num' do
     let(:item) { Item.new({
             :FITMN => "1234567",
             :ITEMD => "test product 1",
-            :FISZEI => "6/13.5z",
+            :FISZEI => "1/2#",
             :FIPCKI => "60",
             :PRICE => "3.45",
             :CWCD => "N",
@@ -48,6 +48,7 @@ describe 'weight suffix & num' do
   end
 
   it 'works with fractional numbers' do
-    expect(item.weight).to eq(81)
+    expect(item.weight).to eq(0.5)
   end
+
 end
