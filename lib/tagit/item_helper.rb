@@ -97,9 +97,13 @@ module Helper
   end
 
   def get_weight_num(weight)
-    if weight.include? "/"
+    if weight.include? "1/2"
       num = weight.scan(/\d{1,}\.?\d{0,2}/).map(&:to_f).inject(1,:/)
       #regex for 1 or more digits, allow for "." and 0-2 digits
+      return zero_to_one num
+    elsif weight.include? "/"
+      num = weight.scan(/\d{1,}\.?\d{0,2}/).map(&:to_f).inject(1,:*)
+      # assuming that 1/2 is used as .5 and all other is a pack-of(multiply)
       return zero_to_one num
     else
       num = weight.gsub(/((-\d*{2})+\D*)|[^+(0-9)\.]/,"").to_f

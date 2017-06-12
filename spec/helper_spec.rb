@@ -26,13 +26,63 @@ describe 'parent child helper methods' do
 end
 
 
-describe 'weight suffix & num' do
+describe 'item with fractional' do
+
+    let(:item) { Item.new({
+            :FITMN => "1234567",
+            :ITEMD => "test product 1",
+            :FISZEI => "5/2.2#",
+            :FIPCKI => "1",
+            :PRICE => "3.45",
+            :CWCD => "N",
+            :RWCD => "N",
+            :BRAND => "some brand",
+            :FUPCU => "0987654321",
+            :FJVIN2 => "12345",
+            :DESC1 => "&",
+            :FVNDN => "12345"
+          })}
+
+  it 'changes pound sign to lettering'do
+    expect(item.suffix).to eq('LB')
+  end
+
+  it 'works with fractional numbers' do
+    expect(item.weight).to eq(11)
+  end
+
+end
+
+describe 'item with apostrophe for FT' do
+
+    let(:item) { Item.new({
+            :FITMN => "1234567",
+            :ITEMD => "test product 1",
+            :FISZEI => "5'",
+            :FIPCKI => "1",
+            :PRICE => "3.45",
+            :CWCD => "N",
+            :RWCD => "N",
+            :BRAND => "some brand",
+            :FUPCU => "0987654321",
+            :FJVIN2 => "12345",
+            :DESC1 => "&",
+            :FVNDN => "12345"
+          })}
+
+  it 'changes pound sign to lettering'do
+    expect(item.suffix).to eq('FT')
+  end
+
+end
+
+describe 'item with fractional' do
 
     let(:item) { Item.new({
             :FITMN => "1234567",
             :ITEMD => "test product 1",
             :FISZEI => "1/2#",
-            :FIPCKI => "60",
+            :FIPCKI => "1",
             :PRICE => "3.45",
             :CWCD => "N",
             :RWCD => "N",
