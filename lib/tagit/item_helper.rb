@@ -105,6 +105,10 @@ module Helper
       num = weight.scan(/\d{1,}\.?\d{0,2}/).map(&:to_f).inject(1,:*)
       # assuming that 1/2 is used as .5 and all other is a pack-of(multiply)
       return zero_to_one num
+    elsif weight.include? "-"
+      num = weight.scan(/\d{1,}\.?\d{0,2}/).map(&:to_f).inject(:+).fdiv(2)
+      # for range, returns average.
+      return zero_to_one num
     else
       num = weight.gsub(/((-\d*{2})+\D*)|[^+(0-9)\.]/,"").to_f
       return zero_to_one num

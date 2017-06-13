@@ -102,3 +102,27 @@ describe 'item with fractional' do
   end
 
 end
+
+describe 'item with range' do
+
+    let(:item) { Item.new({
+            :FITMN => "1234567",
+            :ITEMD => "test product 1",
+            :FISZEI => "3-4#",
+            :FIPCKI => "1",
+            :PRICE => "3.45",
+            :CWCD => "N",
+            :RWCD => "N",
+            :BRAND => "some brand",
+            :FUPCU => "0987654321",
+            :FJVIN2 => "12345",
+            :DESC1 => "&",
+            :FVNDN => "12345"
+          })}
+
+
+  it 'works with fractional numbers' do
+    expect(item.weight).to eq(3.5)
+  end
+
+end
