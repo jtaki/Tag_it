@@ -72,8 +72,8 @@ items.each do |i|
     ary << "$#{i.price}"
   end
 
-  if i.rw == true
-      ary << "PER #{i.suffix}"
+  if i.rw
+      ary << "PER LB"
   else
     ary << "UNIT"
   end
