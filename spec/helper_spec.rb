@@ -169,8 +169,8 @@ describe 'handles item with rw exception' do
     let(:item) { Item.new({
             :FIITMN => "3194114",
             :ITEMD => "SALMON FILLET",
-            :FISZEI => "3.5LB",
-            :FIPCKI => "1",
+            :FISZEI => "3-5#",
+            :FIPCKI => "0001",
             :PRICE => "8.44",
             :CWCD => "Y",
             :RWCD => "N",
@@ -183,6 +183,10 @@ describe 'handles item with rw exception' do
 
   it 'treats as random weight' do
     expect(item.rw).to  be_truthy
+  end
+
+  it 'price should not multiply' do
+    expect(item.price).to eq(8.44)
   end
 
 end

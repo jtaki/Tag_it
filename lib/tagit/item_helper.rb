@@ -164,8 +164,8 @@ module Helper
     return ans
   end
 
-  def check_for_exception_rw(hsh)
-    if rw_exceptions.include?(hsh[:FIITMN])
+  def check_for_exception_rw(num)
+    if rw_exceptions.include?(num)
       return true
     else
       return false
@@ -173,7 +173,7 @@ module Helper
   end
 
   def rw_exceptions
-    ["3194114"]
+    [3194114]
   end
 
 end
