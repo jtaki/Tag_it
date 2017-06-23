@@ -17,7 +17,7 @@ class Item
     @pack   = hsh[:FIPCKI].to_i
     @price  = hsh[:PRICE].to_f
     @cw     = hsh[:CWCD] == "Y" ? (true) : (false)
-    @rw     = hsh[:RWCD] == "Y" ? (true) : (false)
+    @rw     = hsh[:RWCD] == "Y" ? (true) : check_for_exception_rw(hsh)
     @comp_unit  = get_comparative_units(self)
     @comp_price = get_compared_price(self)
     @brand = hsh[:BRAND].to_s.strip
@@ -26,6 +26,7 @@ class Item
     @sym = hsh[:DESC1].to_s.strip
     @vid = hsh[:FVNDN].to_i
     # @area = hsh[:FFJDCFF].downcase
+    # @box_weight = hsh[:something].to_f
   end
 
 end

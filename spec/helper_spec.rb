@@ -29,7 +29,7 @@ end
 describe 'item with fractional' do
 
     let(:item) { Item.new({
-            :FITMN => "1234567",
+            :FIITMN => "1234567",
             :ITEMD => "test product 1",
             :FISZEI => "5/2.2#",
             :FIPCKI => "1",
@@ -56,7 +56,7 @@ end
 describe 'item with apostrophe for FT' do
 
     let(:item) { Item.new({
-            :FITMN => "1234567",
+            :FIITMN => "1234567",
             :ITEMD => "test product 1",
             :FISZEI => "5'",
             :FIPCKI => "1",
@@ -79,7 +79,7 @@ end
 describe 'item with fractional' do
 
     let(:item) { Item.new({
-            :FITMN => "1234567",
+            :FIITMN => "1234567",
             :ITEMD => "test product 1",
             :FISZEI => "1/2#",
             :FIPCKI => "1",
@@ -106,7 +106,7 @@ end
 describe 'item with range' do
 
     let(:item) { Item.new({
-            :FITMN => "1234567",
+            :FIITMN => "1234567",
             :ITEMD => "test product 1",
             :FISZEI => "3-4#",
             :FIPCKI => "1",
@@ -123,6 +123,66 @@ describe 'item with range' do
 
   it 'works with fractional numbers' do
     expect(item.weight).to eq(3.5)
+  end
+
+end
+
+
+# test the au jus thing that didnt work giving lower price by about a dollar
+
+describe 'item with range' do
+
+    let(:item) { Item.new({
+            :FIITMN => "112554",
+            :ITEMD => " BEEF, PATTY AU JUS SEASONED HOMESTYLE",
+            :FISZEI => "5.3OZ",
+            :FIPCKI => "1",
+            :PRICE => "3.62",
+            :CWCD => "Y",
+            :RWCD => "N",
+            :BRAND => "TNT BURGER",
+            :FUPCU => "0987654321",
+            :FJVIN2 => "12345",
+            :DESC1 => "&",
+            :FVNDN => "12345"
+          })}
+
+
+  it 'gets correct weight' do
+    expect(item.weight).to eq(5.3)
+  end
+
+  it 'turns oz to pounds correctly' do
+    expect(cwtolb(item.suffix, item.weight)).to eq(0.33125)
+  end
+
+  it 'rounds weight to case' do
+    expect
+  end
+
+end
+
+
+# exception item
+describe 'handles item with rw exception' do
+
+    let(:item) { Item.new({
+            :FIITMN => "3194114",
+            :ITEMD => "SALMON FILLET",
+            :FISZEI => "3.5LB",
+            :FIPCKI => "1",
+            :PRICE => "8.44",
+            :CWCD => "Y",
+            :RWCD => "N",
+            :BRAND => "PACKER",
+            :FUPCU => "987654321",
+            :FJVIN2 => "12345",
+            :DESC1 => "&",
+            :FVNDN => "12345"
+          })}
+
+  it 'treats as random weight' do
+    expect(item.rw).to  be_truthy
   end
 
 end

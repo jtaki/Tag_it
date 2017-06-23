@@ -164,4 +164,16 @@ module Helper
     return ans
   end
 
+  def check_for_exception_rw(hsh)
+    if rw_exceptions.include?(hsh[:FIITMN])
+      return true
+    else
+      return false
+    end
+  end
+
+  def rw_exceptions
+    ["3194114"]
+  end
+
 end
