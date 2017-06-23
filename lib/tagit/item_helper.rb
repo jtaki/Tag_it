@@ -107,7 +107,6 @@ module Helper
       return zero_to_one num
     elsif weight.include? "-"
       num = weight.scan(/\d{1,}\.?\d{0,2}/).map(&:to_f).inject(:+).fdiv(2)
-      # for range, returns average.
       return zero_to_one num
     else
       num = weight.gsub(/((-\d*{2})+\D*)|[^+(0-9)\.]/,"").to_f

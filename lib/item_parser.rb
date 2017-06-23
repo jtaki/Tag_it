@@ -13,8 +13,8 @@ itemsheet = Roo::Spreadsheet.open('data/vplbl3h8c.xls',csv_options: {encoding: E
 custom = Roo::Spreadsheet.open('custom/logs/custom.csv', csv_options: {encoding: Encoding::ISO_8859_1})
 custom = custom.parse(num: 'ITEM', c1: 'Custom1', c2:'Custom2')
 
-puts "categories: All(A) Dry(D), Chill(C), Frozen(F), Hazard(H)"
-ans = selection_prompt("Print which category?  ")
+# puts "categories: All(A) Dry(D), Chill(C), Frozen(F), Hazard(H)"
+# ans = selection_prompt("Print which category?  ")
 
 header = [ "ItemNumber",
             "DescLine1",
@@ -41,19 +41,20 @@ header_hash = { FIITMN: 'FIITMN',
                 FUPCU: 'FUPCU',
                 FJVIN2: 'FJVIN2',
                 DESC1: 'DESC1',
-                FVNDN: 'FVNDN',
-                FFJDCFF: 'FFJDCFF'}
+                FVNDN: 'FVNDN'
+                # FFJDCFF: 'FFJDCFF'
+              }
 
 items = []
 
 
 itemsheet.parse(header_hash).each do |hash|
   item = Item.new(hash)
-  if item.area == ans
-    items << item
-  elsif ans == "a"
+  # if item.area == ans
+  #   items << item
+  # elsif ans == "a"
     items << item unless item.num == 0
-  end
+  # end
 end
 
 allitems = []
