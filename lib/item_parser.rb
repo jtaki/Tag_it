@@ -42,7 +42,8 @@ header_hash = { FIITMN: 'FIITMN',
                 FJVIN2: 'FJVIN2',
                 DESC1: 'DESC1',
                 FVNDN: 'FVNDN',
-                FFJDCFF: 'FFJDCFF'}
+                FFJDCFF: 'FFJDCFF',
+                FFJWTIW: 'FFJWTIW'}
 
 items = []
 
@@ -67,7 +68,7 @@ items.each do |i|
   ary << i.brand << i.upc << i.vin << i.sym
   # price conditional for CW
   if (i.cw == true) && (i.rw == false)
-    ary << "$#{(cwtolb( i.suffix, i.weight ).to_f * i.pack).round(3) * i.price}"
+    ary << "$#{ i.box_weight.round * i.price }"
   else
     ary << "$#{i.price}"
   end
