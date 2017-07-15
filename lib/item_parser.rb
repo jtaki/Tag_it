@@ -13,8 +13,6 @@ itemsheet = Roo::Spreadsheet.open('data/vplbl3h8c.xls',csv_options: {encoding: E
 custom = Roo::Spreadsheet.open('custom/logs/custom.csv', csv_options: {encoding: Encoding::ISO_8859_1})
 custom = custom.parse(num: 'ITEM', c1: 'Custom1', c2:'Custom2')
 
-puts "categories: All(A) Dry(D), Chill(C), Frozen(F), Hazard(H)"
-ans = selection_prompt("Print which category?  ")
 
 header = [ "ItemNumber",
             "DescLine1",
@@ -50,14 +48,11 @@ items = []
 
 itemsheet.parse(header_hash).each do |hash|
   item = Item.new(hash)
-  if item.area == ans
-    items << item
-  elsif ans == "a"
-    items << item unless item.num == 0
-  end
+  items << item unless item.num == 0
 end
 
-allitems = []
+allitems       = []
+frozen_items   = []
 # items to each own array
 items.each do |i|
   ary = []
@@ -68,7 +63,7 @@ items.each do |i|
   ary << i.brand << i.upc << i.vin << i.sym
   # price conditional for CW
   if (i.cw == true) && (i.rw == false)
-    ary << "$#{ i.box_weight.round * i.price }"
+    ary << "$#{ i.box_weight.round(1) * i.price }"
   else
     ary << "$#{i.price}"
   end
@@ -92,13 +87,16 @@ items.each do |i|
   ary << i.vid
 
 
-
-  allitems << ary
+  if i.area == "f"
+    frozen_items << ary
+  else
+    allitems << ary
+  end
 end
 
 
 
-# tests #
+# output #
 ########
 puts "Created #{items.count} items just now"
 puts "==" * 9
@@ -111,6 +109,13 @@ sleep(3)
 CSV.open('data/tags_to_print.csv', "w", :row_sep => :auto) do |csv|
   csv << header
   allitems.each do |item|
+    csv << item
+  end
+end
+
+CSV.open('data/frozen_to_print.csv', "w", :row_sep => :auto) do |csv|
+  csv << header
+  frozen_items.each do |item|
     csv << item
   end
 end
