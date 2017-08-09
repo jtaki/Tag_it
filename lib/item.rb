@@ -7,7 +7,7 @@ class Item
 
   attr_accessor :num, :line1, :line2, :weight, :suffix, :pack, :brand,
               :price, :cw, :rw, :child, :compare,
-              :comp_unit, :comp_price, :upc, :vin, :sym, :vid, :area, :box_weight
+              :comp_unit, :comp_price, :upc, :vin, :sym, :vid, :area, :box_weight, :slot
 
   def initialize(hsh)
     @num    = hsh[:FIITMN].to_i
@@ -27,6 +27,7 @@ class Item
     @vid = hsh[:FVNDN].to_i
     @area = hsh[:FFJDCFF].downcase
     @box_weight = hsh[:FFJWTIW].to_f
+    @slot = hsh[:SLTN2]
   end
 
 end

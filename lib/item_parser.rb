@@ -26,7 +26,8 @@ header = [ "ItemNumber",
             "PerUnit",
             "ComparativePrice",
             "ComparativeUnits",
-            "VenderID"
+            "VenderID",
+            "Slot"
           ]
 header_hash = { FIITMN: 'FIITMN',
                 ITEMD: 'ITEMD',
@@ -41,7 +42,9 @@ header_hash = { FIITMN: 'FIITMN',
                 DESC1: 'DESC1',
                 FVNDN: 'FVNDN',
                 FFJDCFF: 'FFJDCFF',
-                FFJWTIW: 'FFJWTIW'}
+                FFJWTIW: 'FFJWTIW',
+                SLTN2: 'SLTN2'
+              }
 
 items = []
 
@@ -84,7 +87,7 @@ items.each do |i|
   end
 
 
-  ary << i.vid
+  ary << i.vid << i.slot
 
 
   if i.area == "f"
