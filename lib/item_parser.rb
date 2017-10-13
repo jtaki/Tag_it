@@ -1,58 +1,22 @@
 #!/usr/bin/env rubygems
 require_relative 'item'
-require 'roo-xls'
 require_relative './tagit/compile'
+require_relative 'custon_name_logger'
 
 include Helper
 include Compiler
 
 compiler
 
+itemlist = DocumentParser.new('data/vplbl3h8c.xls')
+items = itemlist.parse_sheet
 
-itemsheet = Roo::Spreadsheet.open('data/vplbl3h8c.xls',csv_options: {encoding: Encoding::UTF_8})
-custom = Roo::Spreadsheet.open('custom/logs/custom.csv', csv_options: {encoding: Encoding::ISO_8859_1})
+# Run generator
+namelog = CustomNameLogger.new
+namelog.load_new
+
+# custom = Roo::Spreadsheet.open('custom/logs/custom.csv', csv_options: {encoding: Encoding::ISO_8859_1})
 custom = custom.parse(num: 'ITEM', c1: 'Custom1', c2:'Custom2')
-
-
-header = [ "ItemNumber",
-            "DescLine1",
-            "DescLine2",
-            "PackSize",
-            "Brand",
-            "UPC",
-            "VIN",
-            "Symbol",
-            "Price",
-            "PerUnit",
-            "ComparativePrice",
-            "ComparativeUnits",
-            "VenderID",
-            "Slot"
-          ]
-header_hash = { FIITMN: 'FIITMN',
-                ITEMD: 'ITEMD',
-                FISZEI: 'FISZEI',
-                FIPCKI: 'FIPCKI',
-                PRICE: 'PRICE',
-                CWCD: 'CWCD',
-                RWCD: 'RWCD',
-                BRAND: 'BRAND',
-                FUPCU: 'FUPCU',
-                FJVIN2: 'FJVIN2',
-                DESC1: 'DESC1',
-                FVNDN: 'FVNDN',
-                FFJDCFF: 'FFJDCFF',
-                FFJWTIW: 'FFJWTIW',
-                SLTN2: 'SLTN2'
-              }
-
-items = []
-
-
-itemsheet.parse(header_hash).each do |hash|
-  item = Item.new(hash)
-  items << item unless item.num == 0
-end
 
 allitems       = []
 frozen_items   = []

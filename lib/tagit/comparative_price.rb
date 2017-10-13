@@ -1,5 +1,5 @@
 module Comparative
-  def get_comparative_units(item)
+  def get_compared_units(item)
     if    item.rw     == true
       nil
     elsif item.suffix == "CAN"
@@ -12,7 +12,7 @@ module Comparative
   end
 
   def get_compared_price(item)
-    suf = get_comparative_units(item)
+    suf = get_compared_units(item)
     if item.cw == true
       item.price
     elsif suf != nil
