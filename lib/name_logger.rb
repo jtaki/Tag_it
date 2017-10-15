@@ -2,7 +2,7 @@
 # middlelayer between namedatabase
 # or could create new from csv log
 
-require 'name_data_base'
+require 'name_database'
 require 'csv'
 # this is a process object
 class NameLogger

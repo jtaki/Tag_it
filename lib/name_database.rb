@@ -41,9 +41,4 @@ class NameDatabase
     end
   end
 
-  def check_duplicate?(itemnum)
-    # checks number against yaml keys , returns true if nomatch
-    true
-  end
-
 end
