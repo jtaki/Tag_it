@@ -4,7 +4,7 @@ describe NameDatabase do
   let(:db) { NameDatabase.new('test_database.yml') }
   let(:name_array) { [11111,"test", "test"] }
 
-  xit 'can persist information into the yml file' do
+  it 'can persist information into the yml file' do
     db.append_new(name_array)
 
     expect()
@@ -20,7 +20,8 @@ describe NameDatabase do
 
   it 'can retrieve information from the yml file' do
     db.load_data
-    expect(db.items).to eq("something")
+
+    expect(db.items.has_key?(12345)).to eq(true)
   end
 
 end

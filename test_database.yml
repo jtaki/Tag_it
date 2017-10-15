@@ -1,6 +1,13 @@
 ---
 data:
-- number: 300000
-  desc_1: something
-  desc_2: something else
-- something: example
+  12345:
+    desc_1: something
+    desc_2: something else
+  12346:
+    desc_2: example 2
+    desc_3: example 2 line 2
+  11111: !ruby/struct:NameDatabase::Item
+    number: 11111
+    desc_1: test
+    desc_2: test
+

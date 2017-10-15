@@ -14,7 +14,7 @@ class NameDatabase
 
   def load_data
     @items = @store.transaction do
-      @store.fetch(:data, "key does not exist")
+      @store.fetch('data', "key does not exist")
     end
     puts @items
   end
@@ -24,12 +24,10 @@ class NameDatabase
   end
   # accepts an array of arrays
   # needs to append to load_data
-  def append_new(new_items_array)
-    new_items_array.each do |i|
-      item = ::Item.new(i[1], i[2], i[3])
-      if check_duplicate?(item[:number])
-        update_database(item)
-      end
+  def append_new(arr)
+    item = Item.new(arr[0], arr[1], arr[2])
+    if check_duplicate?(item.number)
+      update_database(item)
     end
   end
 
@@ -38,8 +36,7 @@ class NameDatabase
   def update_database(item)
     @store.transaction do
       # unless the key (itemnum) already exists, then store it
-      @items += item
-      @store[:data] = @items
+      @store['data'][item.number] = item
       @store.commit
     end
   end
