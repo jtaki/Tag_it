@@ -10,4 +10,7 @@ data:
     number: 11111
     desc_1: test
     desc_2: test
-
+  item.number: !ruby/struct:NameDatabase::Item
+    number: 11111
+    desc_1: test
+    desc_2: test
