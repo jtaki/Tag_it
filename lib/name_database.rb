@@ -25,17 +25,14 @@ class NameDatabase
   # accepts an array of arrays
   # needs to append to load_data
   def append_new_item(arr)
-    item = Item.new(arr[0], arr[1], arr[2])
-    if check_duplicate?(item.number)
-      update_database(item, 'item.number')
-    end
+    item = Item.new(*arr)
+    update_database(item, 'item.number')
   end
 
   private
 
   def update_database(item, keyname)
     @store.transaction do
-      # unless the key (itemnum) already exists, then store it
       @store['data'][keyname] = item
       @store.commit
     end
