@@ -10,12 +10,7 @@ class NameDatabase
 
   def initialize(db = "names_database.yml")
     @store = YAML::Store.new db
-  end
-
-  def load_data
-    @items = @store.transaction do
-      @store.fetch('data', "key does not exist")
-    end
+    load_data
   end
 
   def find_by_number(number) # returns item struct
@@ -38,4 +33,10 @@ class NameDatabase
     end
   end
 
+  def load_data
+    @items = @store.transaction do
+      @store.fetch('data', "key does not exist")
+    end
+  end
+  
 end

@@ -8,13 +8,11 @@ describe NameDatabase do
 
     it 'can persist information into the yml file' do
       db.append_new_item(name_array)
-      db.load_data
 
       expect(db.items).to include(name_array[0])
     end
 
     it 'can retrieve information from the yml file' do
-      db.load_data
 
       expect(db.items.has_key?(12345)).to eq(true)
     end
@@ -22,7 +20,6 @@ describe NameDatabase do
   end
 
   it 'can retrieve specific name by number' do
-    db.load_data
     num = name_array[0]
     item_lookup = db.find_by_number(num)
 
