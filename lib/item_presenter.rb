@@ -2,7 +2,7 @@ require_relative 'comparative_price'
 
 # Presentation layer helper
 module ItemPresenter
-include Comparative
+include ComparativePrice
 
   def description_1(item); end
   def description_2(item); end
@@ -20,13 +20,30 @@ include Comparative
   end
   # def child(item); end
   def parent
-    is_child?(self) ? num.to_s.split('').drop(1).join.to_i : num
+    if is_child?(self)
+      arr = num.to_s.split('')
+      if arr[1] == 0 && arr.length == 6
+        arr.drop(2).join.to_i
+      else
+        arr.drop(1).join.to_i
+      end
+    else
+      num
+    end
+  end
+
+  def parent?
+    !is_child?(self)
+  end
+
+  def child?
+    is_child?(self)
   end
 
   private
 
   def is_child?(item)
-    item.num.to_s.match(/^(3\d{6}$|30\d{5}$)/) ? true : false
+    item.num.to_s.match(/^(30?\d{5,6})/) ? true : false
   end
 
   def find_custom(file)
@@ -43,50 +60,50 @@ include Comparative
     custom_name << a[:c1] << a[:c2]
   end
 
-  def get_weight_suffix(x)
-    case x
-    when /\A[#]10/
+  def get_weight_suffix(weight)
+    case
+    when weight.match(/\A[#]10/)
       'CAN'
-    when /[#]|LB(.*)/
+    when weight.match(/[#]|LB(.*)/)
       'LB'
-    when /(O|)Z(.*)/
+    when weight.match(/(O|)Z(.*)/)
       'OZ'
-    when /G(A|)L/
+    when weight.match(/G(A|)L/)
       'GAL'
-    when /CT(.*)/
+    when weight.match(/CT(.*)/)
       'CT'
-    when /BSKT(.*)/
+    when weight.match(/BSKT(.*)/)
       'BSKT'
-    when /PK(.*)/
+    when weight.match(/PK(.*)/)
       'PK'
-    when /EACH(.*)|EA(.*)/
+    when weight.match(/EACH(.*)|EA(.*)/)
       'EA'
-    when /PINT(.*)|PT(.*)/
+    when weight.match(/PINT(.*)|PT(.*)/)
       'PT'
-    when /PC(.*)/
+    when weight.match(/PC(.*)/)
       'PC'
-    when /UP(.*)/
+    when weight.match(/UP(.*)/)
       # x or more pieces per lb
       'UP'
-    when /KG(.*)/
+    when weight.match(/KG(.*)/)
       'KG'
-    when /ML/
+    when weight.match(/ML/)
       'ML'
-    when /BUNCH/
+    when weight.match(/BUNCH/)
       'BUNCH'
-    when /DZN/
+    when weight.match(/DZN/)
       'DZN'
-    when /GM(.*)/
+    when weight.match(/GM(.*)/)
       'GM'
-    when /FT(.*)|'/
+    when weight.match(/FT(.*)|'/)
       'FT'
-    when /QT(.*)/
+    when weight.match(/QT(.*)/)
       'QT'
-    when /HG(.*)/
+    when weight.match(/HG(.*)/)
       'HG'
-    when /RL(.*)/
+    when weight.match(/RL(.*)/)
       'RL'
-    when /LT(.*)/
+    when weight.match(/LT(.*)/)
       'L'
 
     # when /(?<suffix>[a-zA-Z]{2,3})/ =~ x
