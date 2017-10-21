@@ -1,38 +1,46 @@
-module Helper
+require_relative 'comparative_price'
 
-  def is_child(num)
-    num.to_s.match(/^(3\d{6}$|30\d{5}$)/) ? true : false
+# Presentation layer helper
+module ItemPresenter
+include Comparative
+
+  def description_1(item); end
+  def description_2(item); end
+  def weight
+    get_weight_num self.size
+  end
+  def suffix
+    get_weight_suffix(self.size)
+  end
+  def comp_price
+    get_compared_price self
+  end
+  def comp_unit
+    get_compared_units self
+  end
+  # def child(item); end
+  def parent
+    is_child?(self) ? num.to_s.split('').drop(1).join.to_i : num
   end
 
-  #call on item number
-  def parent
-    if is_child(self)
-      self.to_s.split('').drop(1).join.to_i
-    else
-      self
-    end
+  private
+
+  def is_child?(item)
+    item.num.to_s.match(/^(3\d{6}$|30\d{5}$)/) ? true : false
   end
 
   def find_custom(file)
+    # takes parsed roo object
+    # should return array or hash
     #find the custom name value at line for col
+    custom_name = []
     file.each do |hsh|
       hsh[:num] = hsh[:num].to_i if hsh[:num].is_a?(String)
     end
 
     a = file.select{|hash| hash[:num] == self }
     a = a.first
-    return a[:c1]
-  end
-
-  def find_custom2(file)
-    #find the custom name value at line for col
-    file.each do |hsh|
-      hsh[:num] = hsh[:num].to_i if hsh[:num].is_a?(String)
-    end
-
-    a = file.select{|hash| hash[:num] == self }
-    a = a.first
-    return a[:c2]
+    custom_name << a[:c1] << a[:c2]
   end
 
   def get_weight_suffix(x)
@@ -84,11 +92,10 @@ module Helper
     # when /(?<suffix>[a-zA-Z]{2,3})/ =~ x
     #   suffix
     end
-
   end
 
   def zero_to_one num
-   num == 0 ? 1 : num
+  num == 0 ? 1 : num
   end
 
   def separate_lines(desc)
@@ -115,11 +122,8 @@ module Helper
     end
   end
 
-  def clean_text(text)
-    text.to_s.strip
-  end
-
-  def clean_names(name)
+  def clean_names(item)
+    name = item.name
     case name
     # #remove preceeding "EA " from string
     when /^(.|)EA\s/
@@ -135,45 +139,12 @@ module Helper
     when 'LB'
       1 * wt
     when 'GM'
-       0.00220462 * wt
+      0.00220462 * wt
     when 'OZ'
-       0.0625 * wt
+      0.0625 * wt
     when 'KG'
       2.20462 * wt
     end
-  end
-
-  def selection_prompt(question)
-    print question
-    ans = STDIN.gets.chomp.downcase
-    case ans
-    when "a"
-      ans = "a"
-    when "d"
-      ans = "d"
-    when "c"
-      ans = "c"
-    when "f"
-      ans = "f"
-    when "h"
-      ans = "h"
-    else
-      puts "please select valid letter A / D / C / F / H"
-      selection_prompt question
-    end
-    return ans
-  end
-
-  def check_for_exception_rw(num)
-    if rw_exceptions.include?(num)
-      return true
-    else
-      return false
-    end
-  end
-
-  def rw_exceptions
-    [3194114]
   end
 
 end

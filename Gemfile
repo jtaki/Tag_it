@@ -3,5 +3,6 @@
 source "https://rubygems.org"
 
 gem 'rspec', '~> 3.5'
-gem 'roo', '~> 2.4.0'
+gem 'factory_girl'
+gem "roo", "~> 2.7.0"
 gem 'roo-xls'
