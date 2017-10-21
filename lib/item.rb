@@ -1,4 +1,4 @@
-require_relative 'tagit/item_presenter'
+require_relative 'item_presenter'
 
 class Item
   include ItemPresenter

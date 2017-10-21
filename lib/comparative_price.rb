@@ -1,4 +1,4 @@
-module Comparative
+module ComparativePrice
   def get_compared_units(item)
     if    item.rw     == true
       nil

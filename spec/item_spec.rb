@@ -10,7 +10,7 @@ describe Item do
     end
 
     it 'gets comparative pricing' do
-      expect(item.comp_price).to eq(0.5)
+      expect(item.comp_price).to eq(0.05)
     end
   end
 
