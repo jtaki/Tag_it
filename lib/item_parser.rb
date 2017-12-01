@@ -90,7 +90,7 @@ items.each do |i|
   ary << i.vid << i.slot
 
 
-  if i.area == "f"
+  if i.area == "f" || i.area == "c"
     frozen_items << ary
   else
     allitems << ary
